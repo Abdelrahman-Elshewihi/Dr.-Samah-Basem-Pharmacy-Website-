@@ -3,86 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>صيدلية د. سماح باسم</title>
+<title>صيدلية د. سماح باسم | برفيوم SB Sauvage</title>
+<meta name="description" content="صيدلية د. سماح باسم في دمياط الجديدة - دار مصر. اكتشف برفيوم SB Sauvage الفاخر، واطلب بسهولة عبر واتساب.">
+
+<meta property="og:title" content="صيدلية د. سماح باسم | برفيوم SB Sauvage">
+<meta property="og:description" content="اكتشف عطرًا بتفاصيل فاخرة ولمسة مميزة تناسب ذوقك. اطلب الآن عبر واتساب.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/product-sauvage.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ==================== الهيدر (اللوجو + اسم الصيدلية) ==================== -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <img src="assets/logo.png" alt="شعار صيدلية د. سماح باسم" class="logo">
-      <span class="site-name">صيدلية د. سماح باسم</span>
-    </div>
-  </header>
+<!-- ==================== Navbar ==================== -->
+<header class="navbar" id="navbar">
+  <div class="container navbar-inner">
+    <a href="#hero" class="brand">
+      <img src="assets/logo-circle.png" alt="شعار صيدلية د. سماح باسم" class="brand-logo">
+      <span class="brand-name">صيدلية د. سماح باسم</span>
+    </a>
 
-  <!-- ==================== قسم البداية (Hero) ==================== -->
-  <section class="hero">
-    <div class="container">
-      <h1>صيدلية د. سماح باسم</h1>
-      <p>صيدلية في دمياط الجديدة، دار مصر.</p>
-      <div class="frame">
-        <p>رقم التواصل: 01284085786</p>
+    <nav class="nav-links" id="navLinks">
+      <a href="#hero" class="nav-link">الرئيسية</a>
+      <a href="#about" class="nav-link">عن الصيدلية</a>
+      <a href="#product" class="nav-link">المنتجات</a>
+      <a href="#hours" class="nav-link">مواعيد العمل</a>
+      <a href="https://wa.me/201284085786?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B5%D9%8A%D8%AF%D9%84%D9%8A%D8%A9%20%D8%AF.%20%D8%B3%D9%85%D8%A7%D8%AD%20%D8%A8%D8%A7%D8%B3%D9%85%20%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AD%D8%A9." class="btn btn-whatsapp nav-cta" target="_blank" rel="noopener">تواصل واتساب</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false" aria-controls="navLinks">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ==================== Hero ==================== -->
+<section class="hero" id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="container hero-inner">
+    <div class="hero-text reveal">
+      <h1 class="hero-title">رائحة تعبّر عنك</h1>
+      <p class="hero-subtitle">برفيوم SB Sauvage — أناقة تدوم وحضور لا يُنسى</p>
+      <p class="hero-desc">اكتشف عطرًا بتفاصيل فاخرة ولمسة مميزة تناسب ذوقك.</p>
+
+      <div class="hero-actions">
+        <a href="https://wa.me/201284085786?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%88%D9%81%D8%B1%20SB%20Perfume%20-%20Sauvage%20-%2050ML%20%D9%88%D8%B3%D8%B9%D8%B1%D9%87%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D9%8A." class="btn btn-gold" target="_blank" rel="noopener">اطلب الآن</a>
+        <a href="#product" class="btn btn-outline">تعرّف على البرفيوم</a>
       </div>
     </div>
-  </section>
 
-  <!-- ==================== قسم "عن الصيدلية" ==================== -->
-  <section class="section">
-    <div class="container">
-      <h2>عن الصيدلية</h2>
-      <p>صيدلية د. سماح باسم، موجودة في دمياط الجديدة - دار مصر.</p>
+    <div class="hero-image reveal">
+      <div class="hero-image-glow" aria-hidden="true"></div>
+      <img src="assets/product-sauvage.png" alt="SB Perfume Sauvage 50ml" class="hero-perfume-img">
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==================== قسم المنتجات ====================
-       لإضافة منتج جديد:
-       1) حط صورته في مجلد assets
-       2) انسخ كتلة "بداية كارت منتج" لحد "نهاية كارت منتج" وحطها تحت،
-          وغيّر اسم الصورة والاسم والسعر
-       3) لو المنتج مالوش خصم، احذف سطر old-price وسيب new-price بس
-  -->
-  <section class="section">
-    <div class="container">
-      <h2>المنتجات المتاحة</h2>
-      <div class="products">
+<!-- ==================== مميزات بسيطة ==================== -->
+<section class="features" id="features">
+  <div class="container features-grid">
 
-        <!-- ===== بداية كارت منتج: SB Perfume Sauvage ===== -->
-        <div class="product-card">
-          <img src="assets/product-sauvage.png" alt="SB Perfume Sauvage 50ml">
-          <p class="product-name">SB Perfume - Sauvage - 50ML</p>
-          <p class="product-price">
-            <span class="old-price">400 جنيه</span>
-            <span class="new-price">375 جنيه</span>
-          </p>
+    <div class="feature reveal">
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20 4 L34 12 V28 L20 36 L6 28 V12 Z" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M14 19 L18 23 L27 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>منتجات أصلية</h3>
+      <p>كل منتج موثوق ومضمون المصدر.</p>
+    </div>
+
+    <div class="feature reveal">
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M20 12 V20 L26 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h3>جودة مضمونة</h3>
+      <p>اختيار دقيق يليق بثقتكم.</p>
+    </div>
+
+    <div class="feature reveal">
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M5 24 H25 V13 H5 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M25 17 H31 L35 22 V24 H25 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="12" cy="27" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="29" cy="27" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <h3>توصيل سريع</h3>
+      <p>يصلك طلبك في أقرب وقت ممكن.</p>
+    </div>
+
+    <div class="feature reveal">
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20 35 C20 35 7 27 7 16 C7 10 12 7 16 9 C18 10 19.5 12 20 13 C20.5 12 22 10 24 9 C28 7 33 10 33 16 C33 27 20 35 20 35 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+      <h3>خدمة عملاء ومساعدة</h3>
+      <p>فريق جاهز للرد على استفساراتكم.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== المنتج الأساسي ==================== -->
+<section class="product-section" id="product">
+  <div class="container">
+    <h2 class="section-title reveal">المنتج المميز</h2>
+
+    <div class="product-card reveal">
+      <div class="product-image">
+        <img src="assets/product-sauvage.png" alt="SB Perfume Sauvage 50ml">
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">SB Perfume - Sauvage - 50ML</h3>
+        <div class="price-row">
+          <span class="price-old">400 جنيه</span>
+          <span class="price-new">375 جنيه</span>
         </div>
-        <!-- ===== نهاية كارت منتج ===== -->
-
+        <a href="https://wa.me/201284085786?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%88%D9%81%D8%B1%20SB%20Perfume%20-%20Sauvage%20-%2050ML%20%D9%88%D8%B3%D8%B9%D8%B1%D9%87%20%D8%A7%D9%84%D8%AD%D8%A7%D9%84%D9%8A." class="btn btn-gold" target="_blank" rel="noopener">اطلب عبر واتساب</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==================== قسم التواصل ==================== -->
-  <section class="section">
-    <div class="container">
-      <h2>التواصل</h2>
-      <div class="frame">
-        <p>رقم التواصل (واتساب وتليفون): 01284085786</p>
-      </div>
-      <div class="frame">
-        <p>العنوان: دمياط الجديدة - دار مصر</p>
-      </div>
+<!-- ==================== عن الصيدلية ==================== -->
+<section class="about" id="about">
+  <div class="container about-inner reveal">
+    <h2 class="section-title">عن الصيدلية</h2>
+    <p class="about-name">صيدلية د. سماح باسم</p>
+    <p class="about-text">صيدلية موجودة في دمياط الجديدة - دار مصر، وتهتم بتوفير المنتجات والخدمة المناسبة للعملاء، مع سهولة التواصل والطلب.</p>
+  </div>
+</section>
+
+<!-- ==================== التوصيل ==================== -->
+<section class="delivery" id="delivery">
+  <div class="container">
+    <div class="info-card reveal">
+      <h2 class="section-title">خدمة التوصيل</h2>
+      <p class="info-lead">التوصيل متاح داخل:</p>
+      <ul class="delivery-list">
+        <li>دار مصر 1 و2</li>
+        <li>جنة مصر 1 و2 و3</li>
+        <li>سكن مصر 3</li>
+        <li>بعض الأماكن المجاورة</li>
+      </ul>
+      <p class="note">التوصيل والتوافر يخضعان لتأكيد الصيدلية.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==================== الفوتر ==================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>صيدلية د. سماح باسم</p>
-      <p>01284085786 | دمياط الجديدة - دار مصر</p>
-      <p>© صيدلية د. سماح باسم</p>
+<!-- ==================== مواعيد العمل والموقع ==================== -->
+<section class="hours" id="hours">
+  <div class="container hours-grid">
+    <div class="info-card reveal">
+      <h2 class="section-title">مواعيد العمل</h2>
+      <p class="info-lead">من الساعة 9 صباحًا حتى 3 قبل الفجر</p>
     </div>
-  </footer>
 
+    <div class="info-card reveal">
+      <h2 class="section-title">موقع الصيدلية</h2>
+      <p class="info-lead">دار مصر 2 - بجوار عطارة المدينة</p>
+      <a href="https://www.google.com/maps/search/?api=1&query=%D8%AF%D8%A7%D8%B1%20%D9%85%D8%B5%D8%B1%202%20%D8%A8%D8%AC%D9%88%D8%A7%D8%B1%20%D8%B9%D8%B7%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9%20%D8%AF%D9%85%D9%8A%D8%A7%D8%B7%20%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9" class="btn btn-outline" target="_blank" rel="noopener">فتح الموقع على الخريطة</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Footer ==================== -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/logo-circle.png" alt="شعار صيدلية د. سماح باسم" class="footer-logo">
+      <span>صيدلية د. سماح باسم</span>
+    </div>
+
+    <p class="footer-phone">01284085786</p>
+
+    <a href="https://wa.me/201284085786?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B5%D9%8A%D8%AF%D9%84%D9%8A%D8%A9%20%D8%AF.%20%D8%B3%D9%85%D8%A7%D8%AD%20%D8%A8%D8%A7%D8%B3%D9%85%20%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AD%D8%A9." class="btn btn-whatsapp" target="_blank" rel="noopener">تواصل عبر واتساب</a>
+
+    <p class="footer-address">دمياط الجديدة - دار مصر 2 - بجوار عطارة المدينة</p>
+    <p class="footer-hours">من الساعة 9 صباحًا حتى 3 قبل الفجر</p>
+
+    <p class="copyright">© صيدلية د. سماح باسم</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
