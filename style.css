@@ -1,0 +1,123 @@
+/* ==================== إعدادات عامة ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Tahoma, sans-serif;
+  background: #ffffff;
+  color: #000000;
+  line-height: 1.6;
+}
+
+/* الحاوية اللي بتحدد عرض المحتوى في نص الصفحة */
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ==================== الهيدر ==================== */
+.site-header {
+  border-bottom: 1px solid #000000;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.site-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ==================== قسم البداية (Hero) ==================== */
+.hero {
+  padding: 20px 0;
+  border-bottom: 1px solid #000000;
+}
+
+.hero h1 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  margin-bottom: 12px;
+}
+
+/* ==================== الأقسام العامة (عن الصيدلية / المنتجات / التواصل) ==================== */
+.section {
+  padding: 20px 0;
+  border-bottom: 1px solid #000000;
+}
+
+.section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* البرواز البسيط اللي بيتحط فيه الرقم أو العنوان */
+.frame {
+  border: 1px solid #000000;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* ==================== المنتجات ==================== */
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.product-card {
+  border: 1px solid #000000;
+  padding: 10px;
+  width: 160px;
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.product-name {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.product-price {
+  font-size: 14px;
+}
+
+/* السعر قبل الخصم: خط عليه شرطة ولون رمادي */
+.old-price {
+  text-decoration: line-through;
+  color: #777777;
+  margin-left: 6px;
+}
+
+/* السعر بعد الخصم: أسود وخط سميك */
+.new-price {
+  font-weight: bold;
+  color: #000000;
+}
+
+/* ==================== الفوتر ==================== */
+.site-footer {
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+}
