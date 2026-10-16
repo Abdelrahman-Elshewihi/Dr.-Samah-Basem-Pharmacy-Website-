@@ -44,35 +44,38 @@ updateNavbarState();
    تفضل ظاهرة زي ما هي (مفيش أي حالة ممكن تسبب اختفاء دائم للمحتوى).
    ==================================================================== */
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const canObserve = !prefersReducedMotion && 'IntersectionObserver' in window;
 
-if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-  const revealElements = document.querySelectorAll('.reveal');
-  const viewportH = window.innerHeight;
-
-  const observer = new IntersectionObserver(
+let revealObserver = null;
+if (canObserve) {
+  revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.remove('reveal-hidden');
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
   );
+}
 
-  revealElements.forEach((el) => {
+// دالة عامة بنستخدمها لأي عناصر .reveal — سواء موجودة من الأول في الصفحة
+// أو بتتضاف بعدين ديناميكيًا (زي كروت الأصناف اللي بتتحمل من catalog.js)
+window.observeRevealElements = function (elements) {
+  if (!canObserve) return;
+  const viewportH = window.innerHeight;
+
+  elements.forEach((el) => {
     const isAlreadyInView = el.getBoundingClientRect().top < viewportH * 0.9;
-    // العناصر الظاهرة أصلاً عند تحميل الصفحة تفضل ظاهرة زي ما هي،
-    // فقط العناصر تحت الشاشة بتتخفى مؤقتًا لحد ما توصلها بالتمرير
     if (!isAlreadyInView) {
       el.classList.add('reveal-hidden');
-      observer.observe(el);
+      revealObserver.observe(el);
+      // شبكة أمان فردية لكل عنصر: لو الحركة متكملتش لأي سبب
+      window.setTimeout(() => el.classList.remove('reveal-hidden'), 2500);
     }
   });
+};
 
-  // شبكة أمان: لو لأي سبب الحركة متكملتش، رجّع كل حاجة ظاهرة بعد وقت قصير
-  window.setTimeout(() => {
-    revealElements.forEach((el) => el.classList.remove('reveal-hidden'));
-  }, 2500);
-}
+window.observeRevealElements(document.querySelectorAll('.reveal'));

@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- تحصين أمني أساسي: مفيش سكريبتات خارجية إلا جوجل فونتس، ومفيش فورمات أو إطارات مسموحة -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>صيدلية د. سماح باسم | برفيوم SB Sauvage</title>
 <meta name="description" content="صيدلية د. سماح باسم في دمياط الجديدة - دار مصر. اكتشف برفيوم SB Sauvage الفاخر، واطلب بسهولة عبر واتساب.">
 
@@ -29,8 +34,8 @@
 
     <nav class="nav-links" id="navLinks">
       <a href="#hero" class="nav-link">الرئيسية</a>
+      <a href="#catalog" class="nav-link">الأصناف</a>
       <a href="#about" class="nav-link">عن الصيدلية</a>
-      <a href="#product" class="nav-link">المنتجات</a>
       <a href="#hours" class="nav-link">مواعيد العمل</a>
       <a href="https://wa.me/201284085786?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B5%D9%8A%D8%AF%D9%84%D9%8A%D8%A9%20%D8%AF.%20%D8%B3%D9%85%D8%A7%D8%AD%20%D8%A8%D8%A7%D8%B3%D9%85%20%D9%88%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AD%D8%A9." class="btn btn-whatsapp nav-cta" target="_blank" rel="noopener">تواصل واتساب</a>
     </nav>
@@ -131,6 +136,41 @@
   </div>
 </section>
 
+<!-- ==================== الأصناف (كتالوج قابل للبحث) ==================== -->
+<section class="catalog" id="catalog">
+  <div class="container">
+    <h2 class="section-title reveal">الأصناف</h2>
+
+    <div class="catalog-toolbar reveal">
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M20 20 L16.5 16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <input
+          type="text"
+          id="productSearch"
+          class="search-input"
+          placeholder="ابحث عن منتج... استخدم * لو مش فاكر كل الحروف، مثال: د*ل*ب*ان"
+          autocomplete="off"
+          aria-label="بحث عن منتج">
+      </div>
+
+      <div class="category-bar" id="categoryBar" role="tablist" aria-label="تصفية حسب الصنف">
+        <button type="button" class="category-btn is-active" data-category="الكل" role="tab" aria-selected="true">الكل</button>
+        <button type="button" class="category-btn" data-category="علاج" role="tab" aria-selected="false">علاج</button>
+        <button type="button" class="category-btn" data-category="مستلزمات طبية" role="tab" aria-selected="false">مستلزمات طبية</button>
+        <button type="button" class="category-btn" data-category="حريم" role="tab" aria-selected="false">حريم</button>
+        <button type="button" class="category-btn" data-category="رجالة" role="tab" aria-selected="false">رجالة</button>
+      </div>
+    </div>
+
+    <p class="catalog-status" id="catalogStatus" aria-live="polite">جاري تحميل الأصناف...</p>
+
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
 <!-- ==================== عن الصيدلية ==================== -->
 <section class="about" id="about">
   <div class="container about-inner reveal">
@@ -193,5 +233,6 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="catalog.js"></script>
 </body>
 </html>
