@@ -95,7 +95,7 @@
       const r = rows[i];
       const name = (r[nameIdx] || '').trim();
       const category = (r[catIdx] || '').trim();
-      const qty = parseInt((r[qtyIdx] || '').trim(), 10);
+      const qty = parseFloat((r[qtyIdx] || '').trim());
       const price = parseFloat((r[priceIdx] || '').trim());
 
       if (!name || !VALID_CATEGORIES.includes(category)) continue;
@@ -154,19 +154,40 @@
   /* ------------------------------------------------------------------
      6) رسم كروت المنتجات
      ------------------------------------------------------------------ */
-  function renderProducts(products) {
-    grid.innerHTML = '';
+  let currentResults = [];
+  let shownCount = 0;
+  const PAGE_SIZE = 100;
+  let moreButton = document.getElementById('showMoreProducts');
+  if (!moreButton) {
+    moreButton = document.createElement('button');
+    moreButton.id = 'showMoreProducts';
+    moreButton.type = 'button';
+    moreButton.textContent = 'عرض المزيد';
+    moreButton.style.cssText = 'display:none;margin:24px auto;padding:12px 24px;border:0;border-radius:12px;background:#123b66;color:#fff;font:inherit;cursor:pointer';
+    grid.insertAdjacentElement('afterend', moreButton);
+  }
 
-    if (products.length === 0) {
+  function renderProducts(products, append = false) {
+    if (!append) {
+      currentResults = products;
+      shownCount = 0;
+      grid.innerHTML = '';
+    }
+
+    if (currentResults.length === 0) {
       statusEl.textContent = 'مفيش نتائج مطابقة. جرّب كلمة تانية أو استخدم * بدل الحروف اللي مش متأكد منها.';
       statusEl.style.display = 'block';
+      moreButton.style.display = 'none';
       return;
     }
 
-    statusEl.style.display = 'none';
+    statusEl.textContent = `عدد النتائج: ${currentResults.length.toLocaleString('ar-EG')} صنف`;
+    statusEl.style.display = 'block';
 
+    const nextProducts = currentResults.slice(shownCount, shownCount + PAGE_SIZE);
     const fragment = document.createDocumentFragment();
-    products.forEach((p) => {
+
+    nextProducts.forEach((p) => {
       const card = document.createElement('div');
       card.className = 'catalog-card reveal';
 
@@ -182,13 +203,17 @@
       `;
       fragment.appendChild(card);
     });
-    grid.appendChild(fragment);
 
-    // تفعيل حركة الظهور للكروت الجديدة لو الـ JS الأساسي بيدعمها
+    grid.appendChild(fragment);
+    shownCount += nextProducts.length;
+    moreButton.style.display = shownCount < currentResults.length ? 'block' : 'none';
+
     if (window.observeRevealElements) {
       window.observeRevealElements(grid.querySelectorAll('.reveal'));
     }
   }
+
+  moreButton.addEventListener('click', () => renderProducts(currentResults, true));
 
   /* ------------------------------------------------------------------
      7) تطبيق البحث + فلتر القسم معًا
