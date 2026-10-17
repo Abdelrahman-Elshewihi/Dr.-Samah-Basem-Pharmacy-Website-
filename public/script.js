@@ -168,14 +168,13 @@ $('areas').addEventListener('click', (e) => {
 [nearby, details].forEach((f) => f.addEventListener('input', updateOrder));
 
 function buildMessage() {
-  const lines = ['السلام عليكم، حابب أطلب من الصيدلية الأصناف دي:', ''];
+  const lines = ['السلام عليكم حبيت استفسر عن:', ''];
   let n = 1;
-  Cart.items.forEach((i) => lines.push(`${n++}) ${i.label || i.name} × ${i.qty}  —  ${fmt(i.price * i.qty)} جنيه`));
-  lines.push('', `الإجمالي التقريبي: ${fmt(Cart.total())} جنيه`);
+  Cart.items.forEach((i) => lines.push(`${n++}) ${i.label || i.name} × ${i.qty}`));
   const place = area === 'منطقة مجاورة' ? `منطقة مجاورة${nearby.value.trim() ? ' — ' + nearby.value.trim() : ''}` : area;
-  lines.push(`📍 المنطقة: ${place}`);
-  if (details.value.trim()) lines.push(`🏠 التفاصيل: ${details.value.trim()}`);
-  lines.push('', 'ياريت تأكيد التوافر والسعر. شكرًا 🌿');
+  lines.push('', `📍 ${place}`);
+  if (details.value.trim()) lines.push(`🏠 ${details.value.trim()}`);
+  lines.push('', 'ارجو الرد السريع ❤️');
   return lines.join('\n');
 }
 function updateOrder() {

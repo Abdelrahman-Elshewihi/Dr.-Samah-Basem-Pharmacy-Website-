@@ -114,7 +114,7 @@ function toProducts(rows) {
     const qty = parseFloat(r[qi]), price = parseFloat(r[pi]);
     if (!name || isNaN(qty) || isNaN(price) || qty <= 0) continue;   // المتوفر بس
     const c = classify(name);
-    out.push({ name, label: prettyName(name), price, max: Math.max(1, Math.floor(qty)), key: normalize(name), sec: c.sec, sub: c.sub, rank: c.rank, icon: c.icon });
+    out.push({ name, label: prettyName(name), price, qty, max: Math.max(1, Math.floor(qty)), key: normalize(name), sec: c.sec, sub: c.sub, rank: c.rank, icon: c.icon });
   }
   return out;
 }
@@ -122,63 +122,6 @@ function toProducts(rows) {
 /* العطر المميز (عرض) — أول حاجة في قسم الرجالي */
 const FEATURED = { name: 'SB Perfume Sauvage 50ml', label: 'عطر SB Sauvage 50ml', price: 375, old: 400, max: 20, key: 'sb perfume sauvage عطر', sec: 'men', sub: '', rank: -1, icon: 'perfume', img: 'assets/product-sauvage.jpg' };
 
-
-/* ---------------- صور الأصناف من الإنترنت ----------------
-   بيدوّر تلقائيًا بالاسم في Open Beauty Facts ثم Open Food Facts (مجانيين وبدون مفتاح)
-   ولما يلاقي صورة مطابقة بيحطها مكان الأيقونة. النتيجة بتتخزن على جهاز الزائر.
-   لو مفيش مطابقة موثوقة (زي أغلب الأدوية) بتفضل الأيقونة — أحسن من صورة غلط. */
-const IMG_KEY = 'sb-img-cache-v1';
-let imgCache = {};
-try { imgCache = JSON.parse(localStorage.getItem(IMG_KEY) || '{}'); } catch (e) {}
-const saveImg = () => { try { localStorage.setItem(IMG_KEY, JSON.stringify(imgCache)); } catch (e) {} };
-const STOP = new Set(['tab','tabs','cap','caps','syp','susp','amp','vial','drops','drop','cream','gel','ml','mg','gm','gram','pcs','pieces','off','free','new','plus','for','men','women']);
-function searchTerms(label) {
-  const w = (label.match(/[A-Za-z][A-Za-z'&-]{2,}/g) || []).filter((x) => !STOP.has(x.toLowerCase()));
-  return w.slice(0, 4);
-}
-const SOURCES = ['https://world.openbeautyfacts.org', 'https://world.openfoodfacts.org'];
-async function findImage(label) {
-  const terms = searchTerms(label);
-  if (!terms.length || !terms.some((t) => t.length >= 4)) return '';
-  for (const base of SOURCES) {
-    try {
-      const u = `${base}/cgi/search.pl?search_terms=${encodeURIComponent(terms.join(' '))}&search_simple=1&action=process&json=1&page_size=5&fields=product_name,brands,image_front_small_url`;
-      const r = await fetch(u); if (!r.ok) continue;
-      const d = await r.json();
-      const need = terms.filter((t) => t.length >= 4).map((t) => t.toLowerCase());
-      for (const x of d.products || []) {
-        const hay = ((x.product_name || '') + ' ' + (x.brands || '')).toLowerCase();
-        // لازم أول كلمة مميزة في الاسم تكون موجودة في نتيجة الصورة (تفادي صورة منتج مختلف)
-        if (x.image_front_small_url && hay.includes(need[0])) return x.image_front_small_url;
-      }
-    } catch (e) { /* مفيش نت أو الخدمة مشغولة: نكمّل بالأيقونة */ }
-  }
-  return '';
-}
-function showImage(el, url) {
-  const box = el.querySelector('.pack'); if (!box || !url) return;
-  const im = new Image(); im.alt = ''; im.referrerPolicy = 'no-referrer';
-  im.onload = () => { box.className = 'pack photo'; box.innerHTML = ''; box.appendChild(im); };
-  im.src = url;
-}
-const queue = []; let running = 0;
-function pump() {
-  while (running < 2 && queue.length) {
-    const { el, p } = queue.shift(); running++;
-    findImage(p.label).then((u) => { imgCache[p.name] = u; saveImg(); if (u) showImage(el, u); })
-      .finally(() => { running--; setTimeout(pump, 250); });
-  }
-}
-const imgObserver = 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach((e) => {
-  if (!e.isIntersecting) return;
-  imgObserver.unobserve(e.target);
-  const p = results[+e.target.dataset.i]; if (!p) return;
-  queue.push({ el: e.target, p }); pump();
-}), { rootMargin: '200px' }) : null;
-function watchImage(el, p) {
-  if (p.name in imgCache) { if (imgCache[p.name]) showImage(el, imgCache[p.name]); return; }
-  if (imgObserver) imgObserver.observe(el);
-}
 
 /* ---------------- البحث ---------------- */
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -210,11 +153,11 @@ function makeCard(p, idx) {
   const pack = p.img ? `<div class="pack photo"><img src="${p.img}" alt="" loading="lazy"></div>`
     : `<div class="pack"><svg class="ic" viewBox="0 0 24 24">${ICONS[p.icon] || ICONS.box}</svg></div>`;
   const h = document.createElement('h3'); h.textContent = p.label;
+  const stock = p.qty ? `<div class="stock">المتوفر: ${(Math.round(p.qty * 100) / 100).toLocaleString('ar-EG')}</div>` : '';
   const price = `<div class="price">${p.old ? `<s>${money(p.old)}</s>` : ''}${money(p.price)}</div>`;
   el.innerHTML = (p.old ? '<span class="offer-tag">عرض</span>' : '') + pack;
   el.append(h);
-  el.insertAdjacentHTML('beforeend', price + `<div class="ctl">${controls(p)}</div>`);
-  if (!p.img) watchImage(el, p);
+  el.insertAdjacentHTML('beforeend', stock + price + `<div class="ctl">${controls(p)}</div>`);
   return el;
 }
 function nextBatch() {
