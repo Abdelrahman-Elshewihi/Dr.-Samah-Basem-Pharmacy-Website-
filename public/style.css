@@ -86,7 +86,7 @@ img{max-width:100%;display:block} a{color:inherit;text-decoration:none} button{f
 .subchips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
 .chip{padding:8px 16px;border-radius:99px;border:1.5px solid var(--line);background:#fff;font:700 .85rem var(--font-d);color:var(--blue);white-space:nowrap;transition:all .25s}
 .chip.is-active{background:var(--gold-grad);border-color:#d9b53c;color:#4a3706}
-.aisle-title{font:800 1.15rem var(--font-d);margin-top:10px}
+
 .catalog-status{font-size:.85rem;color:var(--muted);margin-bottom:14px}
 
 /* الأرفف */
@@ -167,3 +167,37 @@ img{max-width:100%;display:block} a{color:inherit;text-decoration:none} button{f
 
 .more-wrap{text-align:center;margin-top:34px}
 .stock{font:700 .75rem var(--font-b);color:#2f8a57;background:#eaf7f0;border-radius:99px;padding:1px 10px}
+
+/* عنوان القسم */
+.sec-head{text-align:center;margin:18px 0 6px}
+.sec-head h2{font:800 clamp(1.7rem,5vw,2.4rem)/1.2 var(--font-d);letter-spacing:.5px;background:linear-gradient(135deg,#8a6508 0%,#c9a227 35%,#e3bd3a 55%,#9a7410 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.orn{display:block;width:150px;height:14px;margin:6px auto 8px;background:
+  linear-gradient(90deg,transparent,#d4af37 40%,#d4af37 60%,transparent) center/100% 2px no-repeat;position:relative}
+.orn::after{content:'';position:absolute;left:50%;top:50%;width:10px;height:10px;background:#fff;border:2px solid #d4af37;transform:translate(-50%,-50%) rotate(45deg)}
+.sec-head p{color:var(--muted);font-size:.9rem;max-width:560px;margin:0 auto}
+.catalog-status{text-align:center}
+
+/* تابلت */
+@media(min-width:600px){
+  .container{padding:0 24px}
+  .shelf-grid{grid-template-columns:repeat(3,1fr)}
+  .shopfront{width:min(80vw,600px)}
+}
+/* ديسكتوب */
+@media(min-width:1000px){
+  .container{max-width:1240px}
+  .shelf-grid{grid-template-columns:repeat(5,1fr);gap:36px 16px}
+  .aisles{max-width:1000px;gap:16px}
+  .aisle b{font-size:1.05rem}
+  .counter{max-width:760px;margin-inline:auto}
+  .shopfront{width:640px}
+  .item{padding:18px 14px 14px}
+  .pack{width:64px;height:64px}
+  .item h3{font-size:.92rem}
+  .info-grid{max-width:900px;margin:0 auto}
+}
+@media(min-width:1500px){.shelf-grid{grid-template-columns:repeat(6,1fr)}.container{max-width:1380px}}
+@media(max-width:360px){.aisle b{font-size:.82rem}.shelf-grid{grid-template-columns:repeat(2,1fr);gap:28px 8px}.item{padding:12px 6px}}
+
+.store{scroll-margin-top:40px}
+.counter{margin-top:14px}

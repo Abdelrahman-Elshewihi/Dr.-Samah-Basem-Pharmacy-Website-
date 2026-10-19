@@ -38,7 +38,7 @@ const Cart = {
   load() {
     try {
       JSON.parse(localStorage.getItem(STORE_KEY) || '[]').forEach((i) => {
-        if (i && i.name && i.qty > 0) this.items.set(i.name, i);
+        if (i && typeof i.name === 'string' && Number.isFinite(i.qty) && i.qty > 0 && Number.isFinite(i.price) && Number.isFinite(i.max)) this.items.set(i.name, { name: i.name, label: String(i.label || i.name), price: +i.price, max: Math.max(1, +i.max), qty: Math.min(+i.qty, Math.max(1, +i.max)) });
       });
     } catch (e) { /* التخزين غير متاح: تمام، العربية بتشتغل عادي */ }
   },

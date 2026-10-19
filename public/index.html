@@ -55,26 +55,26 @@
 <section class="store" id="store">
   <div class="ceiling" aria-hidden="true"></div>
   <nav class="aisles" id="aisles" aria-label="أقسام الصيدلية">
-    <button type="button" class="aisle is-active" data-sec="men"><svg viewBox="0 0 24 24" class="ic"><path d="M5 17l9-9 4 4-9 9zM14 8l2-2 3 3-2 2"/></svg><b>الرجالي</b><small id="n-men"></small></button>
-    <button type="button" class="aisle" data-sec="women"><svg viewBox="0 0 24 24" class="ic"><path d="M9 21V11h6v10zM10 11V6l4-3v8"/></svg><b>الحريم</b><small id="n-women"></small></button>
-    <button type="button" class="aisle" data-sec="supplies"><svg viewBox="0 0 24 24" class="ic"><path d="M7 3h10l-1 4H8zM8 7l-1 14h10L16 7"/></svg><b>المستلزمات</b><small id="n-supplies"></small></button>
-    <button type="button" class="aisle" data-sec="med"><svg viewBox="0 0 24 24" class="ic"><rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-35 12 12)"/><path d="M9.5 6.5l5 5"/></svg><b>العلاج</b><small id="n-med"></small></button>
+    <button type="button" class="aisle is-active" data-sec="men"><svg viewBox="0 0 24 24" class="ic"><path d="M5 17l9-9 4 4-9 9zM14 8l2-2 3 3-2 2"/></svg><b>رجالي</b><small id="n-men"></small></button>
+    <button type="button" class="aisle" data-sec="women"><svg viewBox="0 0 24 24" class="ic"><path d="M9 21V11h6v10zM10 11V6l4-3v8"/></svg><b>نسائي</b><small id="n-women"></small></button>
+    <button type="button" class="aisle" data-sec="supplies"><svg viewBox="0 0 24 24" class="ic"><path d="M7 3h10l-1 4H8zM8 7l-1 14h10L16 7"/></svg><b>مستحضرات</b><small id="n-supplies"></small></button>
+    <button type="button" class="aisle" data-sec="med"><svg viewBox="0 0 24 24" class="ic"><rect x="3" y="9" width="18" height="6" rx="3" transform="rotate(-35 12 12)"/><path d="M9.5 6.5l5 5"/></svg><b>أدوية</b><small id="n-med"></small></button>
   </nav>
 
   <div class="container">
     <div class="counter">
       <div class="search-box">
         <svg class="ic search-ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-        <input type="text" id="productSearch" class="search-input" placeholder="دوّر على أي صنف… (تقدر تستخدم * بدل حرف مش فاكره)" autocomplete="off" aria-label="بحث عن صنف">
+        <input type="text" id="productSearch" class="search-input" placeholder="دوّر بالعربي أو الإنجليزي… مثال: بنادول، شامبو، جيليت" autocomplete="off" aria-label="بحث عن صنف">
       </div>
       <div class="subchips" id="subChips" hidden>
         <button type="button" class="chip is-active" data-sub="">الكل</button>
-        <button type="button" class="chip" data-sub="care">تجميل وعناية</button>
-        <button type="button" class="chip" data-sub="med">مستلزمات علاجية</button>
+        <button type="button" class="chip" data-sub="care">عناية وتجميل</button>
+        <button type="button" class="chip" data-sub="med">مستلزمات طبية</button>
       </div>
     </div>
 
-    <p class="aisle-title" id="aisleTitle"></p>
+    <div class="sec-head"><h2 id="aisleTitle"></h2><span class="orn" aria-hidden="true"></span><p id="aisleSub"></p></div>
     <p class="catalog-status" id="catalogStatus" aria-live="polite">جاري تجهيز الأرفف…</p>
     <div class="shelf-grid" id="productGrid"></div>
     <div class="more-wrap"><button type="button" class="btn btn-outline" id="moreBtn" hidden>عرض المزيد</button></div>
