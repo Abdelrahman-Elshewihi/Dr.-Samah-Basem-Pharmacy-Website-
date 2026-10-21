@@ -17,14 +17,62 @@ function toast(msg) {
 }
 window.toast = toast;
 
-/* ---------- 1) الباب: اضغط وادخل ---------- */
-const entrance = $('entrance');
+/* ---------- 0) وضع الليل: من ٣ الفجر لـ ٨ الصبح الإضاءة خافتة (والزبون يقدر يلغيها) ---------- */
+const hr = new Date().getHours();
+const isNightWindow = hr >= 3 && hr < 8;
+let dim = isNightWindow;
+try { if (isNightWindow && sessionStorage.getItem('sb-light') === '1') dim = false; } catch (e) {}
+function applyDim() {
+  document.documentElement.toggleAttribute('data-night', dim);
+  const m = document.querySelector('meta[name="theme-color"]');
+  if (m) m.setAttribute('content', dim ? '#0e1823' : '#dff0fb');
+  $('dimBtn').classList.toggle('is-dim', dim);
+  $('dimBtn').setAttribute('aria-pressed', String(dim));
+}
+if (isNightWindow) {
+  $('dimBtn').hidden = false;
+  $('dimBtn').addEventListener('click', () => {
+    dim = !dim;
+    try { sessionStorage.setItem('sb-light', dim ? '0' : '1'); } catch (e) {}
+    applyDim();
+    toast(dim ? 'رجعنا للإضاءة الخافتة' : 'تم تشغيل الإضاءة');
+  });
+}
+applyDim();
+
+/* ---------- 1) الباب: الباب يفتح والكاميرا تدخل للصيدلية ---------- */
+const entrance = $('entrance'), portal = $('portal'), storeEl = $('store');
 let entered = false;
 function enterStore() {
-  if (entered) { $('store').scrollIntoView({ behavior: 'smooth' }); return; }
+  if (entered) { storeEl.scrollIntoView({ behavior: 'smooth' }); return; }
   entered = true;
-  entrance.classList.add('open');
-  setTimeout(() => $('store').scrollIntoView({ behavior: 'smooth' }), 950);
+  entrance.classList.add('open');                       // الباب ينزلق ويفتح
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !Element.prototype.animate) { setTimeout(() => storeEl.scrollIntoView(), 700); return; }
+
+  const sf = $('shopfront'), d = $('doorway').getBoundingClientRect(), r = sf.getBoundingClientRect();
+  const cx = d.left + d.width / 2, cy = d.top + d.height / 2;
+  const scale = Math.max(innerWidth / d.width, innerHeight / d.height) * 1.8;
+  sf.style.transformOrigin = `${cx - r.left}px ${cy - r.top}px`;
+  document.body.style.overflow = 'hidden';
+  entrance.classList.add('diving');
+
+  setTimeout(() => {                                    // الكاميرا بتتحرك للداخل
+    const anim = sf.animate(
+      [{ transform: 'translate(0,0) scale(1)' },
+       { transform: `translate(${innerWidth / 2 - cx}px,${innerHeight / 2 - cy}px) scale(${scale})` }],
+      { duration: 1900, easing: 'cubic-bezier(.55,0,.2,1)', fill: 'forwards' });
+    setTimeout(() => portal.classList.add('in'), 1350); // ضوء ناعم يغطي لحظة الدخول
+    anim.onfinish = () => {
+      storeEl.scrollIntoView({ behavior: 'auto' });     // نبقى جوه الصيدلية
+      anim.cancel();
+      sf.style.transformOrigin = '';
+      entrance.classList.remove('diving');
+      document.body.classList.add('arriving');
+      portal.classList.remove('in');                    // الستارة تتفتح على الأرفف
+      setTimeout(() => { document.body.style.overflow = ''; document.body.classList.remove('arriving'); }, 1100);
+    };
+  }, 700);
 }
 ['doorR', 'doorL', 'enterBtn'].forEach((id) => $(id).addEventListener('click', enterStore));
 // لو الزائر نزل بنفسه (اسكرول)، الباب يتفتح لوحده

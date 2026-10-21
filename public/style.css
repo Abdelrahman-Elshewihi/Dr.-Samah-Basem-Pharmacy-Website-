@@ -201,3 +201,60 @@ img{max-width:100%;display:block} a{color:inherit;text-decoration:none} button{f
 
 .store{scroll-margin-top:40px}
 .counter{margin-top:14px}
+
+/* ====================== دخول الصيدلية (كاميرا) ====================== */
+.shopfront{will-change:transform}
+.entrance.diving .enter-btn,.entrance.diving .enter-hint{opacity:0;transition:opacity .5s}
+.entrance.diving .sign,.entrance.diving .awning{transition:opacity 1.2s .5s;opacity:.0}
+.entrance.diving .inside{filter:brightness(1.08)}
+.entrance.open .glow{opacity:1;animation:none}
+.portal{position:fixed;inset:0;z-index:100;pointer-events:none;opacity:0;transition:opacity 1s ease;background:radial-gradient(circle at 50% 50%,#fffdf0 0%,#eef7fd 70%)}
+.portal.in{opacity:1;transition-duration:.55s}
+body.arriving .store{animation:arrive 1.1s var(--ease) both}
+@keyframes arrive{from{transform:scale(1.045);filter:blur(3px)}to{transform:none;filter:none}}
+
+/* ====================== زر الإضاءة العائم ====================== */
+.dim-btn{position:fixed;z-index:55;inset-inline-end:14px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:var(--blue);background:rgba(255,255,255,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1.5px solid rgba(201,162,39,.55);box-shadow:0 8px 20px rgba(47,111,159,.18);opacity:.78;transition:opacity .3s,transform .3s var(--ease)}
+.dim-btn:hover{opacity:1;transform:scale(1.07)}
+.dim-btn .ic-moon{display:block}.dim-btn .ic-sun{display:none}
+.dim-btn.is-dim .ic-moon{display:none}.dim-btn.is-dim .ic-sun{display:block}
+
+/* ====================== الإضاءة الخافتة (٣ فجرًا – ٨ صباحًا) ====================== */
+html[data-night]{--bg:#0e1823;--white:#152433;--mist:#1a2d40;--sky:#27425b;--sky-deep:#6aa5cc;--blue:#8fc4e8;--ink:#e6eef5;--muted:#8aa3b6;--line:#243c52}
+body,.topbar,.store,.aisle,.item,.search-input,.chip,.drawer,.cart-row,.field,.info-card{transition:background-color .6s,border-color .6s,color .6s}
+html[data-night] body::after{content:'';position:fixed;inset:0;z-index:20;pointer-events:none;background:radial-gradient(ellipse at 50% 38%,transparent 35%,rgba(2,6,12,.55) 100%)}
+html[data-night] .topbar{background:rgba(14,24,35,.82)}
+html[data-night] .entrance{background:linear-gradient(180deg,#0a121b 0%,#101d2a 60%,var(--bg) 100%)}
+html[data-night] .entrance::before{background:linear-gradient(#17232f,#0f1923);border-top-color:#23384d}
+html[data-night] .awning{background:repeating-linear-gradient(90deg,#26394d 0 34px,#3b5f80 34px 68px);box-shadow:0 10px 18px rgba(0,0,0,.4)}
+html[data-night] .sign{background:#101c28;box-shadow:0 0 0 3px #8a6f1f,0 0 28px rgba(230,190,70,.28)}
+html[data-night] .sign h1{filter:drop-shadow(0 0 9px rgba(235,195,75,.5))}
+html[data-night] .doorway{border-color:#1d3144;box-shadow:0 0 0 2px #8a6f1f,0 14px 30px rgba(0,0,0,.5);background:#101c28}
+html[data-night] .inside{background:
+  repeating-linear-gradient(90deg,rgba(121,182,222,.28) 0 10px,transparent 10px 17px) 0 18%/100% 14px no-repeat,
+  repeating-linear-gradient(90deg,rgba(231,200,90,.38) 0 12px,transparent 12px 20px) 0 40%/100% 14px no-repeat,
+  repeating-linear-gradient(90deg,rgba(121,182,222,.28) 0 14px,transparent 14px 22px) 0 62%/100% 14px no-repeat,
+  linear-gradient(180deg,#4a3f22,#2a3a4d 70%,#1a2735)}
+html[data-night] .inside::before{opacity:.7}
+html[data-night] .glow{background:radial-gradient(circle at 50% 70%,rgba(255,214,120,.85),transparent 62%);opacity:.9}
+html[data-night] .door{background:linear-gradient(120deg,rgba(40,64,88,.88),rgba(20,36,54,.72) 60%,rgba(40,64,88,.85));border-color:#2a4660;box-shadow:inset 0 0 0 1px #3a5f80}
+html[data-night] .open-tag{background:#101c28;color:#e8c85a}
+html[data-night] .store{background:linear-gradient(180deg,#0e1823 0,var(--bg) 220px)}
+html[data-night] .ceiling{background:linear-gradient(#15232f,#0e1823);border-bottom-color:#8a6f1f}
+html[data-night] .aisles{background:linear-gradient(var(--bg) 60%,rgba(14,24,35,0))}
+html[data-night] .aisle.is-active{background:linear-gradient(#3a3220,#2b2618);border-color:#b8962c}
+html[data-night] .search-input,html[data-night] .chip,html[data-night] .field,html[data-night] .info-card,html[data-night] .ask-doctor,html[data-night] .cart-row{background:var(--white)}
+html[data-night] .chip.is-active{background:var(--gold-grad);color:#4a3706}
+html[data-night] .item{background:linear-gradient(#182a3a,#132130)}
+html[data-night] .item::after{filter:brightness(.78)}
+html[data-night] .pack{background:linear-gradient(135deg,#1f3448,#182a3a)}
+html[data-night] .stock{background:#143325;color:#6fd39a}
+html[data-night] .total-row{background:linear-gradient(#3a3220,#2b2618);border-color:#8a6f1f}
+html[data-night] .orn::after{background:var(--bg)}
+html[data-night] .cashier{background:#0b141d}
+html[data-night] .portal{background:radial-gradient(circle at 50% 50%,#3a3220 0%,#0e1823 70%)}
+html[data-night] .dim-btn{background:rgba(21,36,51,.7);color:#e8c85a;box-shadow:0 8px 20px rgba(0,0,0,.45);opacity:.6}
+html[data-night] .dim-btn:hover{opacity:.95}
+html[data-night] .brand-logo,html[data-night] .sign-logo,html[data-night] .footer-logo{filter:brightness(.9)}
+html[data-night] .aisle{background:var(--white);border-color:var(--line)}
+html[data-night] .aisle.is-active{background:linear-gradient(#3a3220,#2b2618);border-color:#b8962c}
